@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Event Loop</title>
+<link rel="stylesheet" type="text/css" href=./style.css>
+<script src="eventLoop.js"></script>
+</head>
+<body>
+ <div id = "screen">
+  <div id = "header">
+    <h1> Browser GameLoop </h1>
+   </div>
+  <canvas id="myCanvas">
+   </canvas>
+   <div id="input">
+    <form>
+     Name:
+     </br>
+     <input type="text" name="evtName">
+     </br>
+     Interval:
+     </br>
+     <input type="text" name="interval">
+     </br>
+     Repetition (# Times): 
+     </br>
+     <input type="text" name="rept">
+     </br>
+     <input type="submit" value="Add Event" onclick="newEvent(evtName.value, interval.value, rept.value)">
+    </form> 
+    </div>
+    <div id = "footer">
+     <p>Made for CS 5410</p>
+     </div>
+   </div> 
+</body>
+</html>
