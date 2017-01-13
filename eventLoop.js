@@ -7,9 +7,6 @@ function update(time){
 
 }
 
-function requestAnimationFrame(){
-
-}
 
 function render(){
 
