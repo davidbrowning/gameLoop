@@ -4,6 +4,7 @@
 <title>Event Loop</title>
 <link rel="stylesheet" type="text/css" href=./style.css>
 <script src="eventLoop.js"></script>
+<script src="testanimationFrame.js"></script>
 </head>
 <body>
  <div id = "screen">
@@ -26,8 +27,10 @@
      </br>
      <input type="text" name="rept">
      </br>
+     <!--<input type="submit" value="Add Event" onclick="newEvent(evtName.value, interval.value, rept.value)">-->
      <input type="submit" value="Add Event" onclick="newEvent(evtName.value, interval.value, rept.value)">
-    </form> 
+    </form>
+    <button id="Q" value="test" onclick="step(performance.now())">testing</button> 
     </div>
     <div id = "footer">
      <p>Made for CS 5410</p>
