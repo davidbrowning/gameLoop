@@ -18,7 +18,6 @@ function gameLoop(timestamp) {
 }
 //-----------------------------------------------
 
-//window.requestAnimationFrame(gameLoop);
 
 function newEvent(name,interval,rept){
  console.log('Event name: ' +name + '; Event interval: ' + interval + '; Event Repetitions: ' + rept);
@@ -29,10 +28,18 @@ function newEvent(name,interval,rept){
   event_repetition: rept
  };
  eventArray.push(event);
+ window.requestAnimationFrame(gameLoop);
+}
+
+function check(item, index, arr, elapsed_time){
+ if(this.elapsed_time % arr[index].interval == 0){
+  alert('hit');
+ }
+ else{alert('miss');}
 }
 
 function update(time){
-
+ eventArray.forEach(check);
 }
 
 
