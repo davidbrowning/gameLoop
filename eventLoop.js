@@ -10,9 +10,9 @@ function gameLoop(timestamp) {
    
  var progress = timestamp - start;
 // console.log('progress: ' + progress);
- if (progress < 2000) {
-  window.requestAnimationFrame(gameLoop);
- } 
+ //if (progress < 2000) {
+  //window.requestAnimationFrame(gameLoop);
+ //} 
  update(timestamp);
  render();
 }
@@ -28,21 +28,18 @@ function newEvent(name,interval,rept){
   event_repetition: rept
  };
  eventArray.push(event);
- window.requestAnimationFrame(gameLoop);
-}
-
-function check(item, index, arr, elapsed_time){
- if(this.elapsed_time % arr[index].interval == 0){
-  alert('hit');
- }
- else{alert('miss');}
+ update(performance.now());
+ render(eventArray);
+ //window.requestAnimationFrame(gameLoop);
 }
 
 function update(time){
- eventArray.forEach(check);
+ console.log(eventArray[0]);
+ console.log(eventArray[0].event_name);
 }
 
 
 function render(){
+ window.requestAnimationFrame(gameLoop);
 }
 
