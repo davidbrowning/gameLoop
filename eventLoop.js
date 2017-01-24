@@ -15,7 +15,7 @@ function setGo(){
 function gameLoop(timestamp) {
  if (!start) start = timestamp;
  var progress = timestamp - start;
- console.log(eventArray);
+ //console.log(eventArray);
  if(!killLoop){
   update(timestamp);
   render();
@@ -24,7 +24,7 @@ function gameLoop(timestamp) {
 
 
 function newEvent(name,interval,rept){
- console.log('Event name: ' +name + '; Event interval: ' + interval + '; Event Repetitions: ' + rept);
+ //console.log('Event name: ' +name + '; Event interval: ' + interval + '; Event Repetitions: ' + rept);
  let event = {
   startTime: performance.now(),
   event_name: name,
@@ -43,16 +43,16 @@ function update(time){
  var index;
  updateArray = [];
  for (index = 0; index < eventArray.length; index++){
-  console.log("INDEX: "+index);
-  //console.log("REPETITIONS: "+eventArray[index].event_repetition);
+  //console.log("INDEX: "+index);
+  ////console.log("REPETITIONS: "+eventArray[index].event_repetition);
   if(eventArray[index].event_repetition > 0){
-   //console.log("repetitions greater than 0");
+   ////console.log("repetitions greater than 0");
    var repetitions_thus_far = (eventArray[index].event_start_rept - eventArray[index].event_repetition);
-   console.log("ESR: "+eventArray[index].event_start_rept);
+   //console.log("ESR: "+eventArray[index].event_start_rept);
    // I need time since event started, # times it has already been called. 
    var time_since_start = (time - eventArray[index].startTime);
-   console.log("TSS: "+time_since_start);
-   console.log("RTF: "+repetitions_thus_far);
+   //console.log("TSS: "+time_since_start);
+   //console.log("RTF: "+repetitions_thus_far);
    var intv = eventArray[index].event_interval;
    var times_called_x_interval = intv * repetitions_thus_far;
    var test = (time_since_start / times_called_x_interval);
@@ -61,14 +61,17 @@ function update(time){
    console.log("TEST: "+test);
    if(test > intv){
      let updater = {
-      num_event : index,
+      name_event : eventArray[index].event_name,
       num_remaining : eventArray[index].event_repetition
      };
      eventArray[index].event_repetition--;
      updateArray.push(updater);
     
    }
-  }  
+  }
+  else{
+   eventArray.splice(index, 1);
+  }
  }
 }
 
@@ -76,8 +79,14 @@ function update(time){
 function render(){
  //TODO: Insert the elements either by drawing them onto the canvas (somehow) or figuring out a better way 
  // to put them in some kind of a scrollable list.
- if(updateArray[0]){
-  alert(updateArray[0].num_remaining);
+ //document.getElementById("output").innerHTML = updateArray.length;
+ if(updateArray.length > 0){
+  var i;
+  for(i = 0; i < updateArray.length; i++){
+   document.getElementById("output").innerHTML += ("Event Name: "+updateArray[i].name_event+" ("+updateArray[i].num_remaining+" remaining)<br />");
+   var out = document.getElementById("output");
+    out.scrollTop=out.scrollHeight;
+  }
  }
  window.requestAnimationFrame(gameLoop);
 }
