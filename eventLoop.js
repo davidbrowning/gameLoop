@@ -55,7 +55,7 @@ function update(time){
    //console.log("RTF: "+repetitions_thus_far);
    var intv = eventArray[index].event_interval;
    var times_called_x_interval = intv * repetitions_thus_far;
-   var test = (time_since_start / times_called_x_interval);
+   var test = (time_since_start - times_called_x_interval);
    console.log("INTV: "+intv);
    console.log("TCXI: "+times_called_x_interval);
    console.log("TEST: "+test);
